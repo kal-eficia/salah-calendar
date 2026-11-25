@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Salah calendar · protect your prayers in your work calendar</title>
+<meta name="description" content="Prayer times calculated in your browser, downloaded as calendar blocks for Google Calendar, Outlook or Apple Calendar.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0f1b2d;--soft:#46546a;--paper:#f7f5f0;--line:#e4e0d6;--navy:#13294b;--teal:#0f8b8d;--teal-soft:#e3f3f2;--gold:#c99a2e;--gold-soft:#f8f0dc}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif}
+.hero{background:var(--navy);color:#fff;padding:44px 20px 120px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(15,139,141,.45),transparent 65%)}
+.in{max-width:980px;margin:0 auto;position:relative;z-index:1}
+.kick{font:600 12px/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+h1{font:600 clamp(34px,5.4vw,52px)/1.05 Fraunces,Georgia,serif;margin:12px 0 12px;letter-spacing:-.01em}
+.hero p{color:#bccadf;font-size:18px;max-width:640px;margin:0}
+.panel{max-width:980px;margin:-84px auto 0;padding:0 20px;position:relative;z-index:2}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 1px 2px rgba(15,27,45,.05),0 12px 32px rgba(15,27,45,.08)}
+.controls{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}@media(max-width:760px){.controls{grid-template-columns:1fr 1fr}}
+label{display:block;font:600 12px/1 Inter;letter-spacing:.05em;text-transform:uppercase;color:var(--soft);margin-bottom:6px}
+select,input{width:100%;font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fffefb;color:var(--ink)}
+select:focus,input:focus{outline:none;border-color:var(--teal)}
+.day{display:flex;justify-content:space-between;align-items:baseline;margin:22px 0 12px;flex-wrap:wrap;gap:8px}
+.day h2{font:600 22px/1.2 Fraunces,serif;color:var(--navy);margin:0}.next{color:var(--teal);font-weight:600}
+.times{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}@media(max-width:760px){.times{grid-template-columns:repeat(3,1fr)}}
+.t{border:1px solid var(--line);border-radius:12px;padding:14px 12px;text-align:center}
+.t b{display:block;font:600 26px/1.1 Fraunces,serif;color:var(--navy);margin-top:4px}.t span{font-size:13px;color:var(--soft);font-weight:600}
+.t.now{border-color:var(--teal);background:var(--teal-soft)}.t.sun{opacity:.6}
+.dl{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.btn{all:unset;cursor:pointer;background:var(--teal);color:#fff;font-weight:600;padding:12px 20px;border-radius:11px}
+.btn:hover{filter:brightness(1.08)}.btn:focus-visible,.link:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.link{all:unset;cursor:pointer;color:var(--teal);font-weight:600}
+.note{font-size:14px;color:var(--soft)}
+.how{max-width:980px;margin:34px auto 60px;padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}@media(max-width:760px){.how{grid-template-columns:1fr}}
+.how div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}.how h3{font:600 17px Fraunces,serif;margin:0 0 6px;color:var(--navy)}.how p{margin:0;color:var(--soft);font-size:15px}
+footer{max-width:980px;margin:0 auto 40px;padding:0 20px;color:var(--soft);font-size:14px}footer a{color:var(--teal)}
+</style>
+</head>
+<body>
+<header class="hero"><div class="in">
+  <div class="kick">Open source · calculated in your browser</div>
+  <h1>Put salah in your work calendar</h1>
+  <p>Prayer times as calendar blocks, so meetings get booked around them, not over them. Download once, import into Google Calendar, Outlook or Apple Calendar.</p>
+</div></header>
+
+<main class="panel"><section class="card">
+  <div class="controls">
+    <div><label for="city">Place</label><select id="city"></select></div>
+    <div><label for="method">Method</label><select id="method">
+      <option value="MWL">Muslim World League</option><option value="ISNA">ISNA (North America)</option><option value="Egypt">Egyptian Authority</option>
+      <option value="Makkah">Umm al-Qura, Makkah</option><option value="Karachi">Karachi</option><option value="Dubai">UAE</option></select></div>
+    <div><label for="asr">Asr</label><select id="asr"><option value="shafii">Standard (majority)</option><option value="hanafi">Hanafi</option></select></div>
+    <div><label for="minutes">Block length</label><select id="minutes"><option>15</option><option selected>20</option><option>30</option></select></div>
+  </div>
+  <div class="day"><h2 id="dayname"></h2><span class="next" id="next" aria-live="polite"></span></div>
+  <div class="times" id="times"></div>
+  <div class="dl">
+    <button class="btn" id="download">Download the next 30 days (.ics)</button>
+    <button class="link" id="locate">Use my location instead</button>
+    <span class="note">Jumu'ah is blocked for an hour. Follow your local masjid where its timetable differs.</span>
+  </div>
+</section></main>
+
+<section class="how">
+  <div><h3>1. Download</h3><p>One file with every prayer for the next 30 days, each as a busy block with a reminder 10 minutes before.</p></div>
+  <div><h3>2. Import</h3><p>Google Calendar: Settings, Import & export. Outlook: Add calendar, Upload from file. Apple Calendar: File, Import.</p></div>
+  <div><h3>3. Protect</h3><p>Colleagues see you're busy, so meetings land around salah. The command-line tool can also list meetings that already clash.</p></div>
+</section>
+<footer>Source and the command-line tool: <a href="https://github.com/kal-eficia/salah-calendar">github.com/kal-eficia/salah-calendar</a> · Built by Kalid Nur</footer>
+
+<script src="salah.js"></script>
+<script>
+const PLACES = {"London":[51.5074,-0.1278,"Europe/London"],"Birmingham":[52.4862,-1.8904,"Europe/London"],"Manchester":[53.4808,-2.2426,"Europe/London"],"Leicester":[52.6369,-1.1398,"Europe/London"],"Bradford":[53.796,-1.7594,"Europe/London"],"Cardiff":[51.4816,-3.1791,"Europe/London"],"Glasgow":[55.8642,-4.2518,"Europe/London"],"Amsterdam":[52.3676,4.9041,"Europe/Amsterdam"],"Makkah":[21.4225,39.8262,"Asia/Riyadh"],"Madinah":[24.4672,39.6111,"Asia/Riyadh"],"Riyadh":[24.7136,46.6753,"Asia/Riyadh"],"Dubai":[25.2048,55.2708,"Asia/Dubai"],"Hargeisa":[9.56,44.065,"Africa/Mogadishu"],"Mogadishu":[2.0469,45.3182,"Africa/Mogadishu"],"Nairobi":[-1.2921,36.8219,"Africa/Nairobi"],"Istanbul":[41.0082,28.9784,"Europe/Istanbul"],"Cairo":[30.0444,31.2357,"Africa/Cairo"],"New York":[40.7128,-74.006,"America/New_York"],"Toronto":[43.6532,-79.3832,"America/Toronto"],"Kuala Lumpur":[3.139,101.6869,"Asia/Kuala_Lumpur"]};
+const $ = (id) => document.getElementById(id);
+let custom = null;
+$("city").replaceChildren(...Object.keys(PLACES).map(n => Object.assign(document.createElement("option"), { value: n, textContent: n })));
+const pad = (n) => String(n).padStart(2, "0");
+function settings(){
+  const [lat, lon, tz] = custom || PLACES[$("city").value];
+  return { lat, lon, tz, method: $("method").value, asr: $("asr").value };
+}
+function localToday(tz){
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-GB",{timeZone:tz,year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date()).map(x=>[x.type,x.value]));
+  return [+p.year, +p.month, +p.day];
+}
+function render(){
+  const s = settings(); const [y,m,d] = localToday(s.tz);
+  const wd = new Date(Date.UTC(y,m-1,d)).getUTCDay();
+  const t = Salah.compute(y,m,d,s); const now = Date.now();
+  $("dayname").textContent = new Date(Date.UTC(y,m-1,d)).toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",timeZone:"UTC"}) + (custom ? " · your location" : " · " + $("city").value);
+  let next = null;
+  $("times").replaceChildren(...Salah.PRAYERS.map(p => {
+    const el = document.createElement("div"); el.className = "t" + (p === "sunrise" ? " sun" : "");
+    if (!next && p !== "sunrise" && t[p].utc.getTime() > now) { next = [p, t[p]]; el.classList.add("now"); }
+    el.innerHTML = `<span></span><b></b>`; el.querySelector("span").textContent = Salah.label(p, wd); el.querySelector("b").textContent = `${pad(t[p].h)}:${pad(t[p].m)}`;
+    return el;
+  }));
+  if (next) { const mins = Math.round((next[1].utc.getTime() - now) / 60000); $("next").textContent = `${Salah.label(next[0], wd)} in ${mins >= 60 ? Math.floor(mins/60) + " h " : ""}${mins % 60} min`; }
+  else $("next").textContent = "";
+}
+$("download").onclick = () => {
+  const s = settings(); const [y,m,d] = localToday(s.tz);
+  const ics = Salah.toICS(y,m,d,30,s,{ minutes:+$("minutes").value, place: custom ? "" : $("city").value });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([ics],{type:"text/calendar"})); a.download = "salah.ics"; a.click(); URL.revokeObjectURL(a.href);
+};
+$("locate").onclick = () => navigator.geolocation?.getCurrentPosition(p => { custom = [p.coords.latitude, p.coords.longitude, Intl.DateTimeFormat().resolvedOptions().timeZone]; render(); }, () => alert("Location wasn't shared, so the place list is still in use."));
+for (const id of ["city","method","asr"]) $(id).onchange = () => { if (id === "city") custom = null; render(); };
+render(); setInterval(render, 30000);
+</script>
+</body>
+</html>

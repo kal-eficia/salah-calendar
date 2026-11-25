@@ -1,0 +1,23 @@
+"""A few places to save typing coordinates. Add your own with --lat/--lon/--tz."""
+PLACES = {
+    "london": (51.5074, -0.1278, "Europe/London"),
+    "birmingham": (52.4862, -1.8904, "Europe/London"),
+    "manchester": (53.4808, -2.2426, "Europe/London"),
+    "leicester": (52.6369, -1.1398, "Europe/London"),
+    "bradford": (53.7960, -1.7594, "Europe/London"),
+    "cardiff": (51.4816, -3.1791, "Europe/London"),
+    "glasgow": (55.8642, -4.2518, "Europe/London"),
+    "amsterdam": (52.3676, 4.9041, "Europe/Amsterdam"),
+    "makkah": (21.4225, 39.8262, "Asia/Riyadh"),
+    "madinah": (24.4672, 39.6111, "Asia/Riyadh"),
+    "riyadh": (24.7136, 46.6753, "Asia/Riyadh"),
+    "dubai": (25.2048, 55.2708, "Asia/Dubai"),
+    "hargeisa": (9.5600, 44.0650, "Africa/Mogadishu"),
+    "mogadishu": (2.0469, 45.3182, "Africa/Mogadishu"),
+    "nairobi": (-1.2921, 36.8219, "Africa/Nairobi"),
+    "istanbul": (41.0082, 28.9784, "Europe/Istanbul"),
+    "cairo": (30.0444, 31.2357, "Africa/Cairo"),
+    "new-york": (40.7128, -74.0060, "America/New_York"),
+    "toronto": (43.6532, -79.3832, "America/Toronto"),
+    "kuala-lumpur": (3.1390, 101.6869, "Asia/Kuala_Lumpur"),
+}
