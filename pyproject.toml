@@ -7,7 +7,7 @@ name = "salah-calendar"
 version = "1.0.0"
 description = "Prayer times calculated from the sun's position, as calendar blocks for Google Calendar, Outlook or Apple Calendar, plus a clash checker for your work diary."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "Kalid Nur" }]
 keywords = ["salah", "prayer-times", "islam", "calendar", "ics", "muslim"]

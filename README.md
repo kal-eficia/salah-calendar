@@ -1,8 +1,9 @@
 <p align="center"><img src=".github/banner.png" alt="salah-calendar" width="100%"></p>
 
 <p align="center">
+  <a href="https://github.com/kal-eficia/salah-calendar/actions/workflows/tests.yml"><img src="https://github.com/kal-eficia/salah-calendar/actions/workflows/tests.yml/badge.svg" alt="tests"></a>
   <a href="https://kal-eficia.github.io/salah-calendar/"><img src="https://img.shields.io/badge/web%20app-open-0f8b8d?style=flat-square" alt="Web app"></a>
-  <img src="https://img.shields.io/badge/python-3.9%2B-0c1a30?style=flat-square" alt="Python 3.9+">
+  <img src="https://img.shields.io/badge/python-3.10%2B-0c1a30?style=flat-square" alt="Python 3.10+">
   <img src="https://img.shields.io/badge/dependencies-none-0c1a30?style=flat-square" alt="No dependencies">
   <img src="https://img.shields.io/badge/licence-MIT-c99a2e?style=flat-square" alt="MIT">
 </p>
